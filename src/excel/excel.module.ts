@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ExcelController } from './excel.controller';
 import { ExcelService } from './excel.service';
+import { ExcelController } from './excel.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Account } from '../account/entities/account.entity';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([Account])],
+  providers: [ExcelService],
   controllers: [ExcelController],
-  providers: [ExcelService]
 })
 export class ExcelModule {}
